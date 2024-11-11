@@ -1,0 +1,20 @@
+
+
+
+
+
+<button hx-get="/articles?page=2" hx-target="#articles" hx-swap="beforeend">
+    Load More Articles
+</button>
+
+
+<form method="post" hx-post="/submit-feedback" hx-target="#form-result" hx-swap="outerHTML">
+    <input type="text" name="feedback" placeholder="Enter your feedback...">
+    <button type="submit">Submit Feedback</button>
+</form>
+<div id="form-result"></div>
+  
+<div hx-ws="connect:/real-time-updates" hx-trigger="message from ws" hx-swap="outerHTML">
+    <p>Waiting for updates...</p>
+</div>
+  

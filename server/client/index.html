@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Food Ordering App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 p-5">
+    <header class="text-center mb-10">
+        <h1 class="text-3xl font-bold">Food Ordering App</h1>
+    </header>
+    <main class="flex justify-around flex-wrap">
+        <section class="bg-white shadow-md rounded-lg p-6 w-full md:w-1/3 mb-6">
+            <div class="bg-pink-100 p-6 mb-12">
+                <h2 class="text-xl text-center font-semibold mb-4">Add Food Item</h2>
+                <form id="add-food-form" hx-post="/api/food" hx-target="#food-list" hx-swap="outerHTML" hx-trigger="submit" class="flex flex-col space-y-4">
+                    <input type="text" name="name" placeholder="Food Name" required class="border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 shadow-sm">
+                    <input type="number" name="price" placeholder="Price" required class="border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 shadow-sm">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-1 rounded">Add Food Item</button>
+                </form>
+            </div>
+
+            <section class="bg-white shadow-md rounded-lg p-6 w-full mb-6">
+                <h2 class="text-xl font-semibold mb-4">Food Items</h2>
+                <div id="food-list" hx-get="/api/food" hx-trigger="load">
+                    <!-- Food items will be loaded here dynamically by HTMX -->
+                </div>
+            </section>
+        </section>
+        
+        <aside class="bg-white shadow-md rounded-lg p-6 w-full md:w-1/6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Cart</h2>
+            <ul id="cart-items" class="list-disc pl-5">
+                <!-- Items added to the cart will be listed here -->
+            </ul>
+        </aside>
+    </main>
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+</body>
+</html>
